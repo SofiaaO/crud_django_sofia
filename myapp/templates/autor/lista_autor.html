@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl font-bold text-center mb-4">Lista de Autores</h2>
+    <div class="overflow-x-auto">
+        <table class="table-auto w-full border-collapse border border-gray-300">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="py-2 px-4 text-center font-semibold">ID</th>
+                    <th class="py-2 px-4 text-center font-semibold">Nombre y Apellido</th>
+                    <th class="py-2 px-4 text-center font-semibold">Estilo de Pintura</th>
+                    <th class="py-2 px-4 text-center font-semibold">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for autor in autores %}
+                <tr class="border-b border-gray-300">
+                    <td class="py-2 px-4 text-center">{{ autor.id }}</td>  <!-- Mostrar el ID del autor -->
+                    <td class="py-2 px-4 text-center">{{ autor.Nombre }} {{ autor.Apellido }}</td>
+                    <td class="py-2 px-4 text-center">{{ autor.Pintura }}</td>
+                    <td class="py-2 px-4 text-center">
+                        <a href="{% url 'Modificar_Autor' autor.id %}" class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded-md">Modificar</a>
+                        <a href="{% url 'Eliminar_Autor' autor.id %}" class="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded-md ml-1">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td class="py-2 px-4 text-center" colspan="4">No hay autores para mostrar.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center mt-4">
+        <div class="flex justify-between items-center">
+            <a href="{% url 'Lista_Obras' %}" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-md">Ir a Obras</a>
+          <a href="{% url 'Crear_Autor' %}" class=" bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md">Crear nuevo Autor</a>  
+        </div>
+      </div>
+    </div>
+{% endblock %}

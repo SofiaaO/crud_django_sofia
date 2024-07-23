@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+  <h2 class="text-2xl font-bold text-center mb-4">Lista de Obras</h2>
+  <div class="overflow-x-auto">
+    <table class="table-auto w-full border-collapse border border-gray-300">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="py-2 px-4 text-center font-semibold">ID</th>
+          <th class="py-2 px-4 text-center font-semibold">Título de la Obra</th>
+          <th class="py-2 px-4 text-center font-semibold">Autor</th>
+          <th class="py-2 px-4 text-center font-semibold">Fecha de Exposición</th>
+          <th class="py-2 px-4 text-center font-semibold">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for obra in obras %}
+          <tr class="border-b border-gray-300">
+            <td class="py-2 px-4 text-center">{{ obra.id }}</td>
+            <td class="py-2 px-4 text-center">{{ obra.Titulo }}</td>
+            <td class="py-2 px-4 text-center">{{ obra.Autor }}</td>
+            <td class="py-2 px-4 text-center">{{ obra.Fecha_Exposicion }}</td>
+            <td class="py-2 px-4 text-center">
+              <div class="flex justify-center items-center">  <a href="{% url 'Modificar_Obra' obra.id %}" class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded-md">Modificar</a>
+                <a href="{% url 'Eliminar_Obra' obra.id %}" class="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded-md ml-2">Eliminar</a>
+              </div>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td class="py-2 px-4 text-center" colspan="4">No hay obras para mostrar.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="text-center mt-4">
+    <div class="flex justify-between items-center">
+      <a href="{% url 'Lista_Autores'%}" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-md"><button>Ir a Autores</button></a>
+      <a href="{% url 'Crear_Obra' %}" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md">Crear nueva Obra</a>
+  </div>
+</div>
+{% endblock %}

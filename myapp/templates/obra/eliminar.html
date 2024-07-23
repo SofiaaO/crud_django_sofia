@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mx-auto px-4 py-8">
+    
+        <h4 class="text-3xl font-bold text-center text-gray-800 py-4">¿Estás seguro de eliminar la obra "{{ obra.Titulo }}"?</h4>
+        <form method="post" class="px-6 py-4">
+            {% csrf_token %}
+            <div class="flex justify-around items-center mt-6">
+                <a href="{% url 'Lista_Obras' %}" class="text-green-900 hover:text-green-1000">Volver a la lista</a>
+                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md">Eliminar</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
